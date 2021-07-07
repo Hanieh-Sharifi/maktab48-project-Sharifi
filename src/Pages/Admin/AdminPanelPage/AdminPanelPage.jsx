@@ -1,9 +1,10 @@
 import React from 'react';
+import AdminPanelSideBarHeader from '../../../Components/admin-header-sidebar/AdminPanelSideBarHeader';
 
-const AdminPanelPage = () => {
+function AdminPanelPage() {
     return (
         <div>
-            panel page
+            <AdminPanelSideBarHeader/>
         </div>
     )
 }

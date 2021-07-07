@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = ({ component: Component, redirectPath, ...rest }) => {
     return (
         <Route {...rest}
             render={props => {
@@ -9,7 +9,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
                     return <Component {...props} />
                 }
                 else {
-                    return <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+                    return <Redirect to={{ pathname: redirectPath, state: { from: props.location } }} />
                 }
             }}
         />

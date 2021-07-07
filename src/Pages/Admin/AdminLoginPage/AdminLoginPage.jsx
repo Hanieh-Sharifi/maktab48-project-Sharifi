@@ -10,6 +10,12 @@ import { Link, useHistory } from 'react-router-dom';
 // components style import
 import {useStyles} from "./adminLoginStyles";
 
+// fetch user and get token function
+import { LoginFetch } from '../../../API/login';
+
+// for react notification, it needs a toastContainer in return
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminLoginPage = () => {
 
@@ -29,13 +35,14 @@ const AdminLoginPage = () => {
         e.target.id === "userName-input" ? setUserName(e.target.value) : setPassword(e.target.value);
     }
 
-    // form submitted and we'll create token
+    // form submitted
     function formSubmitted(e)
     {
         e.preventDefault();
-        localStorage.setItem("token","fake token");
-        history.push("/admin/panel");
-        console.log("form submitted");
+        // fetch user and get token and go to panel page
+        LoginFetch(userName, password)
+        .then(response => { localStorage.setItem("token", response.data.token); history.push("/admin/panel")})
+        .catch(error => {console.log(error);toast.error("admin not found!")})
     }
 
     return (
@@ -49,6 +56,7 @@ const AdminLoginPage = () => {
                 </form>
                 <Link to="/" >بازگشت به سایت</Link>
             </div>
+            <ToastContainer />
         </div>
     )
 }

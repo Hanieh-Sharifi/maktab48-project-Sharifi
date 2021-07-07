@@ -15,6 +15,7 @@ import { CssBaseline } from '@material-ui/core';
 
 // changed themes import
 import { theme, jss } from './Utils/styled-components/mainThemeChanges';
+import Home from './Pages/Home';
 
 
 
@@ -27,10 +28,13 @@ function App() {
         <div className="App">
           <Router>
             <Switch>
+              <Route exact path="/">
+                <Home/>
+              </Route>
               <Route exact path="/admin/login">
                 <AdminLoginPage/>
               </Route>
-              <ProtectedRoute exact path="/admin/panel" component={AdminPanelPage}/>
+              <ProtectedRoute exact redirectPath="/admin/login" path="/admin/panel" component={AdminPanelPage}/>
               <Route path="*">
                 <NotFound/>
               </Route>
