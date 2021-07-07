@@ -1,4 +1,4 @@
-import IranNastaliq from "../Assets/Fonts/IranNastaliq.ttf";
+import IranNastaliq from "../../Assets/Fonts/IranNastaliq.ttf";
 
 export const newFont = {
   fontFamily: 'Raleway',

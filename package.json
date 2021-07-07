@@ -11,6 +11,8 @@
     "@testing-library/user-event": "^12.8.3",
     "@welldone-software/why-did-you-render": "^6.2.0",
     "axios": "^0.21.1",
+    "json-server": "^0.16.3",
+    "jsonwebtoken": "^8.5.1",
     "jss-rtl": "^0.3.0",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
@@ -31,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "json-server --watch db.json --port 5000",
+    "auth": "node server.js"
   },
   "eslintConfig": {
     "extends": [

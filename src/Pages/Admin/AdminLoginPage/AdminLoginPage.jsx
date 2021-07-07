@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 
 // styles components material ui
-import { SunShineButton } from '../../../Utils/newColorsMaterial/coloredButton/coloredButtonComponent';
-import { LavenderTextField } from '../../../Utils/newColorsMaterial/coloredTextfield/coloredTextfieldComponent';
+import { SunShineButton } from '../../../Utils/styled-components/newColorsMaterial/coloredButton/coloredButtonComponent';
+import { LavenderTextField } from '../../../Utils/styled-components/newColorsMaterial/coloredTextfield/coloredTextfieldComponent';
 
 // react router dom
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 // components style import
 import {useStyles} from "./adminLoginStyles";
 
 
-function AdminLoginPage() {
+const AdminLoginPage = () => {
+
+    // access to url
+    const history = useHistory();
 
     // add material ui classes
     const classes = useStyles();
@@ -30,6 +33,8 @@ function AdminLoginPage() {
     function formSubmitted(e)
     {
         e.preventDefault();
+        localStorage.setItem("token","fake token");
+        history.push("/admin/panel");
         console.log("form submitted");
     }
 
