@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminPanelSideBarHeader from '../../../Components/admin-header-sidebar/AdminPanelSideBarHeader';
+import AdminPanelSideBarHeader from '../../../Containers/admin-header-sidebar/AdminPanelSideBarHeader';
 
 function AdminPanelPage() {
     return (

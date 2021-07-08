@@ -8,7 +8,6 @@ export const isLoggedIn = () => {
 }
 
 // clear tokens and log out
-export const LogOut = () => {
+export const logOut = () => {
     localStorage.clear();
-    window.location.reload();
 }

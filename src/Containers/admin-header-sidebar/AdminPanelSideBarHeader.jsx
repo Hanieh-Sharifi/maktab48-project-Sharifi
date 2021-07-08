@@ -1,77 +1,38 @@
 import React from 'react';
+import SideBar from '../../Components/SideBar';
 
 // material ui imports
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/Inbox';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { useTheme } from '@material-ui/core/styles';
-import ReceiptIcon from '@material-ui/icons/Receipt';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { SunShineAppBar } from "../../Utils/styled-components/newColorsMaterial/coloredAppBar/coloredAppBarComponent";
 
 // inline material ui styles
 import {useStyles} from "./sideBarHeaderStyle";
-import { useHistory } from 'react-router-dom';
 
-const drawerItems = [{ title: "کالا ها", icon: <InboxIcon /> }, { title: "موجودی و قیمت ها", icon: <AccountBalanceWalletIcon /> }, { title: "سفارش ها", icon:<ReceiptIcon/>}]
 
 const AdminPanelSideBarHeader = (props) => {
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const history = useHistory();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
-
-    const logOut = () => {
-        localStorage.clear();
-        history.push("/admin/login")
-    }
-
-    const drawer = (
-        <div>
-            <Typography variant="h4" align="center" noWrap className={classes.toolbar} >
-                پنل ادمین
-            </Typography>
-            <Divider />
-            <List>
-                {drawerItems?.map((item, index) => (
-                    <ListItem button key={index}>
-                        <ListItemIcon>{item.icon}</ListItemIcon>
-                        <ListItemText primary={item.title} />
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                <ListItem button onClick={() => logOut()}>
-                    <ListItemIcon><ExitToAppIcon color="error" /></ListItemIcon>
-                    <ListItemText primary={"خروج"} />
-                </ListItem>
-            </List>
-        </div>
-    );
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
+            <SunShineAppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -86,7 +47,7 @@ const AdminPanelSideBarHeader = (props) => {
                         پنل ادمین فروشگاه دولوپر
                     </Typography>
                 </Toolbar>
-            </AppBar>
+            </SunShineAppBar>
             <nav className={classes.drawer} aria-label="mailbox folders">
                 <Hidden smUp implementation="css">
                     <Drawer
@@ -102,7 +63,7 @@ const AdminPanelSideBarHeader = (props) => {
                             keepMounted: true,
                         }}
                     >
-                        {drawer}
+                        <SideBar/>
                     </Drawer>
                 </Hidden>
                 <Hidden xsDown implementation="css">
@@ -113,7 +74,7 @@ const AdminPanelSideBarHeader = (props) => {
                         variant="permanent"
                         open
                     >
-                        {drawer}
+                        <SideBar />
                     </Drawer>
                 </Hidden>
             </nav>

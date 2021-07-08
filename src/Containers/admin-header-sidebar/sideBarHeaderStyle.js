@@ -7,6 +7,7 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     drawer: {
+        background: theme.palette.sunshine.dark,
         [theme.breakpoints.up('sm')]: {
             width: drawerWidth,
             flexShrink: 0,
@@ -28,6 +29,7 @@ export const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
         width: drawerWidth,
+        backgroundColor: "rgb(217, 181, 68,.2)",
     },
     content: {
         flexGrow: 1,

@@ -28,6 +28,7 @@ const AdminLoginPage = () => {
     // form states
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [disable, setDisable] = useState({userName:true,password:true});
 
     // form updating states
     function stateChanges(e)
@@ -52,7 +53,7 @@ const AdminLoginPage = () => {
                     <h1>ورود به پنل مدیریت فروشگاه دولوپر</h1>
                     <LavenderTextField value={userName} onChange={(e) => stateChanges(e)} id="userName-input" label="نام کاربری" variant="outlined" />
                     <LavenderTextField value={password} onChange={(e) => stateChanges(e)} type="password" id="password-input" label="رمز عبور" variant="outlined" />
-                    <SunShineButton type="submit" > ورود </SunShineButton>
+                    <SunShineButton disabled={(userName==="" || password==="") ? true : false} type="submit" > ورود </SunShineButton>
                 </form>
                 <Link to="/" >بازگشت به سایت</Link>
             </div>

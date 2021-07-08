@@ -23,6 +23,9 @@ export const SunShineButton = withStyles((theme) => ({
         '& .MuiInputBase-root': {
             color: theme.palette.sunshine.contrastText
         },
+        '&.Mui-disabled': {
+            backgroundColor: theme.palette.sunshine.light,
+        },
         fontSize: "1.3rem",
         fontWeight:"bold",
     }
