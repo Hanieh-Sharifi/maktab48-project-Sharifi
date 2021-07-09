@@ -33,9 +33,9 @@ export const SunShineButton = withStyles((theme) => ({
 
 export const LavenderButton = withStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.lavender.main,
+        backgroundColor: theme.palette.lavender.dark,
         '&:hover': {
-            backgroundColor: theme.palette.lavender.dark,
+            backgroundColor: theme.palette.lavender.main,
         },
         '& .MuiInputBase-root': {
             color: theme.palette.lavender.contrastText

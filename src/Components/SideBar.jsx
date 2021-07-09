@@ -1,55 +1,57 @@
 import React from 'react';
 
+// material ui components
+import { List, ListItem, ListItemText, Divider, ListItemIcon} from "@material-ui/core";
+
+// material ui icons
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import InboxIcon from '@material-ui/icons/Inbox';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import { Typography } from '@material-ui/core';
+
+// material ui icons
 import { useStyles } from '../Containers/admin-header-sidebar/sideBarHeaderStyle';
 
-import { useHistory } from 'react-router';
+// route imports
+import { useHistory, Link } from 'react-router-dom';
+
 
 const drawerItems = [{ title: "کالا ها", icon: <InboxIcon /> }, { title: "موجودی و قیمت ها", icon: <AccountBalanceWalletIcon /> }, { title: "سفارش ها", icon: <ReceiptIcon /> }]
+const links = ["/admin/manage/products","/admin/manage/prices","/admin/manage/orders"];
 
 function SideBar() {
-
+    
     const classes = useStyles();
 
     const history = useHistory();
 
+    // logging out
     const logOut = () => {
         localStorage.clear();
         history.push("/admin/login")
     }
 
     return (
-        <div>
-            <Typography variant="h4" align="center" noWrap className={classes.toolbar} >
-                پنل ادمین
-            </Typography>
-            <Divider />
-            <List>
-                {drawerItems?.map((item, index) => (
-                    <ListItem button key={index}>
-                        <ListItemIcon>{item.icon}</ListItemIcon>
-                        <ListItemText className={classes.sideBarFont}  primary={item.title} />
+        <div className={classes.drawerContainer}>
+                <List>
+                    {drawerItems?.map((item, index) => (
+                        <Link to={links[index]} key={index} >
+                            <ListItem button>
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText primary={item.title} />
+                            </ListItem>
+                        </Link>
+                    ))}
+                </List>
+                <Divider />
+                <List>
+                    <ListItem button onClick={() => logOut()}>
+                        <ListItemIcon><ExitToAppIcon color="error" /></ListItemIcon>
+                        <ListItemText primary={"خروج"} />
                     </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                <ListItem button onClick={() => logOut()}>
-                    <ListItemIcon><ExitToAppIcon color="error" /></ListItemIcon>
-                    <ListItemText primary={"خروج"} />
-                </ListItem>
-            </List>
+                </List>
         </div>
     )
 }
 
-export default SideBar
+export default SideBar;

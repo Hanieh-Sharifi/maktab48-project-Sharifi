@@ -3,36 +3,38 @@ import { makeStyles } from "@material-ui/core";
 const drawerWidth = 240;
 
 export const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-    },
-    drawer: {
-        background: theme.palette.sunshine.dark,
-        [theme.breakpoints.up('sm')]: {
-            width: drawerWidth,
-            flexShrink: 0,
+        root: {
+                display: 'flex',
         },
-    },
-    appBar: {
-        [theme.breakpoints.up('sm')]: {
-            width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: drawerWidth,
+        drawer: {
+                [theme.breakpoints.up('sm')]: {
+                        width: drawerWidth,
+                        flexShrink: 0,
+                },
         },
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
+        appBar: {
+                [theme.breakpoints.up('sm')]: {
+                        width: `calc(100% - ${drawerWidth}px)`,
+                        marginLeft: drawerWidth,
+                },
         },
-    },
-    // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
-    drawerPaper: {
-        width: drawerWidth,
-        backgroundColor: "rgb(217, 181, 68,.2)",
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
+        menuButton: {
+                marginRight: theme.spacing(2),
+                [theme.breakpoints.up('sm')]: {
+                        display: 'none',
+                },
+        },
+        toolbar: theme.mixins.toolbar,
+        drawerPaper: {
+                backgroundColor: "#F3F0C5",
+                width: drawerWidth,
+                '& a': {
+                        textDecoration: "none",
+                        color: "black",
+                }
+        },
+        content: {
+                flexGrow: 1,
+                padding: theme.spacing(3),
+        },
 }));

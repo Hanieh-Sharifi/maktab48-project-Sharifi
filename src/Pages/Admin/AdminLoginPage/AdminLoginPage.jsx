@@ -28,7 +28,6 @@ const AdminLoginPage = () => {
     // form states
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [disable, setDisable] = useState({userName:true,password:true});
 
     // form updating states
     function stateChanges(e)
@@ -63,3 +62,7 @@ const AdminLoginPage = () => {
 }
 
 export default AdminLoginPage;
+
+// accepted admin username and password:
+//eve.holt@reqres.in : username
+//cityslicka : password

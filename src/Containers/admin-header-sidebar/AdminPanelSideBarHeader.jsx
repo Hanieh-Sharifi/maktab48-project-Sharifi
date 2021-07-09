@@ -1,28 +1,28 @@
-import React from 'react';
-import SideBar from '../../Components/SideBar';
+import React, {useState} from 'react';
 
-// material ui imports
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
+// material ui components
+import { CssBaseline, Drawer, Hidden, IconButton, Toolbar, Typography} from "@material-ui/core";
+
+// material ui icon
 import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
+// material ui styles
 import { useTheme } from '@material-ui/core/styles';
-import { SunShineAppBar } from "../../Utils/styled-components/newColorsMaterial/coloredAppBar/coloredAppBarComponent";
+import { useStyles} from "./sideBarHeaderStyle";
 
-// inline material ui styles
-import {useStyles} from "./sideBarHeaderStyle";
+// components
+import SideBar from "../../Components/SideBar";
+import {SunShineAppBar} from "../../Utils/styled-components/newColorsMaterial/coloredAppBar/coloredAppBarComponent";
 
-
-const AdminPanelSideBarHeader = (props) => {
+function ResponsiveDrawer(props)
+{
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
 
+    const [mobileOpen, setMobileOpen] = useState(false);
+
+    // to open or close drawer on mobile
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -43,8 +43,8 @@ const AdminPanelSideBarHeader = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        پنل ادمین فروشگاه دولوپر
+                    <Typography variant="h4" noWrap>
+                        پنل ادمین
                     </Typography>
                 </Toolbar>
             </SunShineAppBar>
@@ -60,7 +60,7 @@ const AdminPanelSideBarHeader = (props) => {
                             paper: classes.drawerPaper,
                         }}
                         ModalProps={{
-                            keepMounted: true,
+                            keepMounted: true, // Better open performance on mobile.
                         }}
                     >
                         <SideBar/>
@@ -78,8 +78,13 @@ const AdminPanelSideBarHeader = (props) => {
                     </Drawer>
                 </Hidden>
             </nav>
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+                {props.children}
+            </main>
         </div>
     );
 }
 
-export default AdminPanelSideBarHeader;
+export default ResponsiveDrawer;
+
