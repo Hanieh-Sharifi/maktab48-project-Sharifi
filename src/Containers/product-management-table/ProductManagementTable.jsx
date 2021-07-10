@@ -1,61 +1,122 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete"
+import { FormControlLabel, IconButton} from "@material-ui/core";
+import { useDispatch } from 'react-redux';
+
+const MatEdit = ({data}) => {
+
+    const dispatch = useDispatch();
+
+    const handleEditClick = () => {
+        dispatch({ type: "EDIT_ROW", payload: data })
+    }
+
+
+    return <FormControlLabel
+        control={
+            <IconButton color="secondary" aria-label="add an alarm" onClick={handleEditClick} >
+                <EditIcon />
+            </IconButton>
+        }
+    />
+};
+
+const MaDelete = ({ index }) => {
+
+    const handleEditClick = () => {
+        axios.delete(`http://localhost:5000/products/${index}`)
+            .then(window.location.reload())
+    }
+
+
+    return <FormControlLabel
+        control={
+            <IconButton color="secondary" aria-label="add an alarm" onClick={handleEditClick} >
+                <DeleteIcon/>
+            </IconButton>
+        }
+    />
+};
 
 const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
-    {
-        field: 'firstName',
-        headerName: 'First name',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'lastName',
-        headerName: 'Last name',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'age',
-        headerName: 'Age',
-        type: 'number',
-        width: 110,
-        editable: true,
-    },
-    {
-        field: 'fullName',
-        headerName: 'Full name',
-        description: 'This column has a value getter and is not sortable.',
+    { 
+        field: 'id', 
+        headerName: 'ردیف', 
         sortable: false,
-        width: 160,
-        valueGetter: (params) =>
-            `${params.getValue(params.id, 'firstName') || ''} ${params.getValue(params.id, 'lastName') || ''
-            }`,
+        flex:.5,
+        filterable:false,
     },
+    {
+        field:"image",
+        headerName: 'تصویر کالا',
+        sortable: false,
+        renderCell: (params) => {
+            return (
+                <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer", objectFit: "cover"}}>
+                    <img alt="product image" src={params.row.image} style={{height:"50px"}}/>
+                </div>
+            );
+        },
+        flex:1,
+        filterable:false,
+    },
+    {
+        field: 'productName',
+        headerName: 'نام کالا',
+        sortable: false,
+        flex: 1,
+        filterable:false,
+    },
+    {
+        field: 'category',
+        headerName: 'دسته بندی',
+        sortable:true,
+        flex: 1,
+    },
+    {
+        field: "actions",
+        headerName: "  ",
+        sortable: false,
+        disableClickEventBubbling: true,
+        renderCell: (params) => {
+            return (
+                <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
+                    <MatEdit index={params.row.id} data={params.row}/>
+                    <MaDelete index={params.row.id} />
+                </div>
+            );
+        },
+        flex: .5,
+        filterable:false,
+    }
 ];
 
-const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
 
-export default function ProductManagementTable() {
+
+export default function ProductManagementTable({data}) {
+
+    const [products,setProducts] = useState([]);
+
+    useEffect(()=>{
+        axios.get("http://localhost:5000/products")
+        .then((data) => setProducts(data.data))
+        .catch((error) => toast.error("! گرفتن اطلاعات با خطا رو به رو شد"))
+    },[])
+
     return (
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid
-                rows={rows}
+                rows={products}
                 columns={columns}
                 pageSize={5}
-                checkboxSelection
                 disableSelectionOnClick
             />
+            <ToastContainer/>
         </div>
     );
 }

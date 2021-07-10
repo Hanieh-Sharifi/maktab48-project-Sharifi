@@ -42,7 +42,7 @@ const AdminLoginPage = () => {
         // fetch user and get token and go to panel page
         LoginFetch(userName, password)
         .then(response => { localStorage.setItem("token", response.data.token); history.push("/admin/panel")})
-        .catch(error => {console.log(error);toast.error("admin not found!")})
+        .catch(error => {console.log(error);toast.error("!کاربر یافت نشد")})
     }
 
     return (

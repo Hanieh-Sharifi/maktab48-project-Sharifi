@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { useSelector } from 'react-redux';
 
 // material ui components
 import { TextField, FormControl, InputLabel, Select, Input } from "@material-ui/core";
@@ -18,14 +19,16 @@ const categories = ["لبنیات","حبوبات","نوشیدنی","خوار و 
 function ModalContainer() {
 
     const classes = modalContainerStyles();
+    const editRow = useSelector(state => state.todo);
 
-    const [image, setImage]= useState("");
-    const [productName, setProductName] = useState("");
-    const [category, setCategory] = useState("");
-    const [explanation, setExplanation] = useState("");
+    const [image, setImage] = useState(editRow[0]?.image);
+    const [productName, setProductName] = useState(editRow[0]?.productName);
+    const [category, setCategory] = useState(editRow[0]?.category);
+    const [explanation, setExplanation] = useState(editRow[0]?.explanation);
 
 
-    function handleSubmit(e)
+
+    function handleSubmit()
     {
         axios.post("http://localhost:5000/products",{
             image: image,
@@ -44,7 +47,7 @@ function ModalContainer() {
 
     return (
         <div>
-            <form onSubmit={(e) => handleSubmit(e)} className={classes.root}  noValidate autoComplete="off">
+            <form onSubmit={() => handleSubmit()} className={classes.root}  noValidate autoComplete="off">
                 <InputLabel htmlFor="my-input">تصویر کالا</InputLabel>
                 <Input onChange={e => handleFileRead(e)} required type="file" />
                 {image && <img src={image} style={{width:"70px",height:"70px",objectFit:"cover"}} />}
@@ -59,7 +62,7 @@ function ModalContainer() {
                     >
                         <option aria-label="None" value="" />
                         {categories?.map((item,index) => {
-                            return <option key={index} value={index}>{item}</option>
+                            return <option key={index} value={item}>{item}</option>
                         })}
                     </Select>
                 </FormControl>

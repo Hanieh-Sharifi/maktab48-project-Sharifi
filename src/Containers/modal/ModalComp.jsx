@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material ui components
 import { Fade, Modal, Backdrop, Button} from "@material-ui/core";
@@ -14,8 +15,12 @@ import { modalMainStyles } from './modalStyles';
 export default function ModalComp(props)
 {
 
+    const editRow = useSelector(state => state.todo);
+    console.log(editRow);
     const classes = modalMainStyles();
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
+
 
     // opent and close modal
     const handleOpen = () => {
@@ -23,6 +28,7 @@ export default function ModalComp(props)
     };
 
     const handleClose = () => {
+        dispatch({type:"EDIT_ROW",payload:{}})
         setOpen(false);
     };
 
@@ -35,7 +41,7 @@ export default function ModalComp(props)
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
-                open={open}
+                open={open || ((editRow[0] && editRow[0].image)?true:false)}
                 onClose={handleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
@@ -43,7 +49,7 @@ export default function ModalComp(props)
                     timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <Fade in={open || ((editRow[0] && editRow[0].image)? true : false)}>
                     <div className={classes.paper}>
                         <Button className={classes.closeButton} onClick={() => handleClose()} >X</Button>
                         <ModalContainer/>
