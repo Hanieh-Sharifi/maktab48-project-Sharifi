@@ -13,11 +13,14 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import { useStyles } from '../Containers/admin-header-sidebar/sideBarHeaderStyle';
 
 // route imports
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+// components
+import SideBarItems from './SideBarItem';
 
 
 const drawerItems = [{ title: "کالا ها", icon: <InboxIcon /> }, { title: "موجودی و قیمت ها", icon: <AccountBalanceWalletIcon /> }, { title: "سفارش ها", icon: <ReceiptIcon /> }]
-const links = ["/admin/manage/products","/admin/manage/prices","/admin/manage/orders"];
+
 
 function SideBar() {
     
@@ -35,12 +38,7 @@ function SideBar() {
         <div className={classes.drawerContainer}>
                 <List>
                     {drawerItems?.map((item, index) => (
-                        <Link to={links[index]} key={index} >
-                            <ListItem button>
-                                <ListItemIcon>{item.icon}</ListItemIcon>
-                                <ListItemText primary={item.title} />
-                            </ListItem>
-                        </Link>
+                        <SideBarItems item={item} index={index} />
                     ))}
                 </List>
                 <Divider />

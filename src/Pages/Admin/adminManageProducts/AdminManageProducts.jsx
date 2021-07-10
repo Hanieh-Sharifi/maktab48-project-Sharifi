@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 // material ui components
 import { Container, Grid, Typography } from '@material-ui/core';
@@ -15,8 +15,6 @@ import ModalComp from '../../../Containers/modal/ModalComp';
 function AdminManageProducts() {
 
     const classes = useStyles();
-    const [edit, setEdit] = useState(false);
-    const [data, setData] = useState({});
 
     return (
         <Container maxWidth="lg" align="center">

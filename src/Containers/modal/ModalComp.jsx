@@ -10,13 +10,15 @@ import ModalContainer from './ModalContainer';
 // material ui styles
 import { modalMainStyles } from './modalStyles';
 
+// redux actions
+import { deleteSelectedProduct } from '../../Store/actions/selectedProductActions';
+
 
 
 export default function ModalComp(props)
 {
 
     const editRow = useSelector(state => state.todo);
-    console.log(editRow);
     const classes = modalMainStyles();
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
@@ -28,7 +30,7 @@ export default function ModalComp(props)
     };
 
     const handleClose = () => {
-        dispatch({type:"EDIT_ROW",payload:{}})
+        dispatch(deleteSelectedProduct())
         setOpen(false);
     };
 

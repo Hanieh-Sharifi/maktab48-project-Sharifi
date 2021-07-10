@@ -20,8 +20,6 @@ import { CssBaseline } from '@material-ui/core';
 import { theme, jss } from './Utils/styled-components/mainThemeChanges';
 
 
-
-
 function App() {
   return (
     <StylesProvider jss={jss} >

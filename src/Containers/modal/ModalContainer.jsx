@@ -11,10 +11,16 @@ import {modalContainerStyles} from "./modalStyles";
 // change image to base64
 import { convertBase64} from "./base64";
 
-// for fetching data
-import axios from 'axios';
+// rich text editor component
+import TextEditor from './TextEditor';
 
-const categories = ["لبنیات","حبوبات","نوشیدنی","خوار و بار","محصولات پروتئینی"]
+// fetch data
+import { putData, postData } from '../../API/productApi';
+
+
+
+const categories = ["لبنیات","حبوبات","نوشیدنی","خوار و بار","محصولات پروتئینی"];
+
 
 function ModalContainer() {
 
@@ -27,15 +33,9 @@ function ModalContainer() {
     const [explanation, setExplanation] = useState(editRow[0]?.explanation);
 
 
-
-    function handleSubmit()
+    function handleSubmit(e)
     {
-        axios.post("http://localhost:5000/products",{
-            image: image,
-            productName: productName,
-            category: category,
-            explanation:explanation
-        })
+        editRow[0] ? putData(editRow[0].id, image, productName, category, explanation) : postData(image, productName, category, explanation)
     }
 
     const handleFileRead = async (event) => {
@@ -44,13 +44,17 @@ function ModalContainer() {
         setImage(base64)
     }
 
+    const handleExplanation = (state) => {
+        const data = state.getCurrentContent().getPlainText();
+        setExplanation(data);
+    }
 
     return (
         <div>
-            <form onSubmit={() => handleSubmit()} className={classes.root}  noValidate autoComplete="off">
+            <form onSubmit={(e) => handleSubmit(e)} className={classes.root}  noValidate autoComplete="off">
                 <InputLabel htmlFor="my-input">تصویر کالا</InputLabel>
-                <Input onChange={e => handleFileRead(e)} required type="file" />
-                {image && <img src={image} style={{width:"70px",height:"70px",objectFit:"cover"}} />}
+                <Input onChange={e => handleFileRead(e)} required type="file" accept="image/*" />
+                {image && <img src={image} alt="uploaded" style={{width:"70px",height:"70px",objectFit:"cover"}} />}
                 <TextField required value={productName} onChange={(e) => setProductName(e.target.value)} fullWidth id="outlined-basic" label="نام کالا" variant="outlined" />
                 <FormControl fullWidth variant="filled" className={classes.formControl}>
                     <InputLabel htmlFor="filled-age-native-simple">دسته بندی</InputLabel>
@@ -66,7 +70,7 @@ function ModalContainer() {
                         })}
                     </Select>
                 </FormControl>
-                <TextField required value={explanation} onChange={(e) => setExplanation(e.target.value)} fullWidth id="outlined-multiline-static" label="توضیحات" multiline rows={4} variant="outlined" />
+                <TextEditor handleExplanation={(state) => handleExplanation(state)} explanation={explanation} />
                 <SunShineButton disabled={(image && productName && category && explanation)?false:true} className={classes.button} fullWidth type="submit" variant="contained">ذخیره</SunShineButton>
             </form>
         </div>

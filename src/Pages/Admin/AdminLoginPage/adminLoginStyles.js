@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/styles';
 
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
     parent: {
         height: "100vh",
         display: "flex",
@@ -13,7 +13,9 @@ export const useStyles = makeStyles(() => ({
         alignItems: "center",
         justifyContent: "center",
         boxShadow: "0px 16px 30px -8px #000000",
-        borderRadius: "8px",
+        [theme.breakpoints.up('sm')]:{
+            borderRadius: "8px",
+        },
         width: "max-content",
         padding: "20px 10px",
         margin: "auto",
