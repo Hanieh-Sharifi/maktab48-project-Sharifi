@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { useSelector } from 'react-redux';
 
 // material ui components
-import { TextField, FormControl, InputLabel, Select, Input } from "@material-ui/core";
+import { TextField, FormControl, InputLabel, Select, Input, Button } from "@material-ui/core";
 import { SunShineButton } from '../../Utils/styled-components/newColorsMaterial/coloredButton/coloredButtonComponent';
 
 // material ui styles
@@ -30,10 +30,10 @@ function ModalContainer() {
     const [image, setImage] = useState(editRow[0]?.image);
     const [productName, setProductName] = useState(editRow[0]?.productName);
     const [category, setCategory] = useState(editRow[0]?.category);
-    const [explanation, setExplanation] = useState(editRow[0]?.explanation);
+    const [explanation, setExplanation] = useState(editRow[0]?.explanation || null);
+    console.log(typeof image);
 
-
-    function handleSubmit(e)
+    function handleSubmit()
     {
         editRow[0] ? putData(editRow[0].id, image, productName, category, explanation) : postData(image, productName, category, explanation)
     }
@@ -45,17 +45,21 @@ function ModalContainer() {
     }
 
     const handleExplanation = (state) => {
-        const data = state.getCurrentContent().getPlainText();
-        setExplanation(data);
+            setExplanation(state.getCurrentContent().getPlainText());
     }
 
     return (
         <div>
-            <form onSubmit={(e) => handleSubmit(e)} className={classes.root}  noValidate autoComplete="off">
+            <form onSubmit={() => handleSubmit()} className={classes.root}  noValidate autoComplete="off">
                 <InputLabel htmlFor="my-input">تصویر کالا</InputLabel>
-                <Input onChange={e => handleFileRead(e)} required type="file" accept="image/*" />
-                {image && <img src={image} alt="uploaded" style={{width:"70px",height:"70px",objectFit:"cover"}} />}
+                <Input onChange={e => handleFileRead(e)} placeholder="image" required type="file" accept="image/*" />
+                {image && <div className={classes.imagePranet} >
+                    <Button onClick={() => setImage("")} >x</Button>
+                    <img src={image} alt="uploaded"/>
+                </div>}
+                {image==="" && <p className={classes.error} >لطفا فیلد را پر کنید</p>}
                 <TextField required value={productName} onChange={(e) => setProductName(e.target.value)} fullWidth id="outlined-basic" label="نام کالا" variant="outlined" />
+                {productName==="" && <p className={classes.error} >لطفا فیلد را پر کنید</p>}
                 <FormControl fullWidth variant="filled" className={classes.formControl}>
                     <InputLabel htmlFor="filled-age-native-simple">دسته بندی</InputLabel>
                     <Select
@@ -70,6 +74,7 @@ function ModalContainer() {
                         })}
                     </Select>
                 </FormControl>
+                {category==="" && <p className={classes.error} >لطفا فیلد را پر کنید</p>}
                 <TextEditor handleExplanation={(state) => handleExplanation(state)} explanation={explanation} />
                 <SunShineButton disabled={(image && productName && category && explanation)?false:true} className={classes.button} fullWidth type="submit" variant="contained">ذخیره</SunShineButton>
             </form>

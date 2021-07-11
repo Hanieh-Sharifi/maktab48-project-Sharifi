@@ -16,8 +16,8 @@ export const columns = [
         sortable: false,
         renderCell: (params) => {
             return (
-                <div style={{ cursor: "pointer", objectFit: "cover" }}>
-                    <img alt="product" src={params.row.image} style={{ height: "50px" }} />
+                <div className="table-image-parent" >
+                    <img alt="product" src={params.row.image} />
                 </div>
             );
         },
@@ -47,7 +47,7 @@ export const columns = [
         disableClickEventBubbling: true,
         renderCell: (params) => {
             return (
-                <div style={{ cursor: "pointer" }}>
+                <div className="table-icon-parent" >
                     <MatEdit index={params.row.id} data={params.row} />
                     <MatDelete index={params.row.id} />
                 </div>

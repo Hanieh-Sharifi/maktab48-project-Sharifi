@@ -38,7 +38,7 @@ function SideBar() {
         <div className={classes.drawerContainer}>
                 <List>
                     {drawerItems?.map((item, index) => (
-                        <SideBarItems item={item} index={index} />
+                        <SideBarItems key={index} item={item} index={index} />
                     ))}
                 </List>
                 <Divider />

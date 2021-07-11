@@ -13,8 +13,35 @@ export const modalContainerStyles = makeStyles((theme) => ({
         margin: "auto",
     },
     button: {
-        marginTop: "50px",
+        marginTop: "40px",
     },
+    richText:{
+        marginTop:"50px",
+        color:"red",
+    },
+    error:{
+        color:"red",
+    },
+    imagePranet:{
+        position:"relative",
+        "& img":{
+            width:"70px",
+            height:"70px",
+            objectFit:"cover",
+        },
+        "& button":{
+            padding: "0",
+            margin: "0",
+            maxWidth: "20px",
+            height: "20px",
+            position: "absolute",
+            display: "flex",
+            justifyContent: "center",
+            "&:hover": {
+                backgroundColor: "red",
+            }
+        }
+    }
 }));
 
 export const modalMainStyles = makeStyles((theme) => ({

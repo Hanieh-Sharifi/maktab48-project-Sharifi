@@ -26,8 +26,8 @@ const AdminLoginPage = () => {
     const classes = useStyles();
 
     // form states
-    const [userName, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+    const [userName, setUserName] = useState(null);
+    const [password, setPassword] = useState(null);
 
     // form updating states
     function stateChanges(e)
@@ -51,8 +51,10 @@ const AdminLoginPage = () => {
                 <form onSubmit={(e) => formSubmitted(e)} className={classes.root} noValidate autoComplete="off">
                     <h1>ورود به پنل مدیریت فروشگاه دولوپر</h1>
                     <LavenderTextField value={userName} onChange={(e) => stateChanges(e)} id="userName-input" label="نام کاربری" variant="outlined" />
+                    {userName === "" && <p className={classes.error}>لطفا فیلد را پر کنید</p>}
                     <LavenderTextField value={password} onChange={(e) => stateChanges(e)} type="password" id="password-input" label="رمز عبور" variant="outlined" />
-                    <SunShineButton disabled={(userName==="" || password==="") ? true : false} type="submit" > ورود </SunShineButton>
+                    {password === "" && <p className={classes.error}>لطفا فیلد را پر کنید</p>}
+                    <SunShineButton disabled={((userName === "" || password === "") || (userName === null || password === null)) ? true : false} type="submit" > ورود </SunShineButton>
                 </form>
                 <Link to="/" >بازگشت به سایت</Link>
             </div>

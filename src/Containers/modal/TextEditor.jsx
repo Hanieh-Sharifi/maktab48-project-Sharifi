@@ -10,7 +10,7 @@ function TextEditor({ explanation, handleExplanation}) {
 
     return (
         <MUIRichTextEditor
-            label="توضیحات"
+            label="لطفا فیلد را پر کنید"
             toolbarButtonSize="small"
             defaultValue={test}
             controls={["bold", "italic", "underline", "strikethrough", "numberList", "bulletList", "undo", "redo", "image", "quote"]}

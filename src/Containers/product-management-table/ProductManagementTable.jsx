@@ -20,7 +20,7 @@ export default function ProductManagementTable() {
     },[])
 
     return (
-        <div style={{ height: 400, width:"100%"}}>
+        <div className={classes.tableParent}>
             <DataGrid
                 rows={products}
                 columns={columns}

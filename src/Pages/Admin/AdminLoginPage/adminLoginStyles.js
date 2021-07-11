@@ -39,10 +39,10 @@ export const useStyles = makeStyles((theme) => ({
             display: "flex",
         },
         '&>div': {
-            marginBottom: "35px",
+            marginBottom: "15px",
         },
         '&>button': {
-            marginTop: "70px",
+            marginTop: "60px",
             marginBottom: "20px",
         },
         '&>h1': {
@@ -51,4 +51,7 @@ export const useStyles = makeStyles((theme) => ({
         },
         margin: "0px 35px",
     },
+    error:{
+        color:"red",
+    }
 }));
