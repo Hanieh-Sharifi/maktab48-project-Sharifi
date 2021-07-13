@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 
 // addresses for pushing history
-const links = ["/admin/manage/products", "/admin/manage/prices", "/admin/manage/orders"];
+const links = ["/admin/panel", "/admin/manage/products", "/admin/manage/prices", "/admin/manage/orders"];
 
 function SideBarItem({item, index}) {
     return (

@@ -5,7 +5,9 @@ import {useDispatch} from "react-redux";
 import EditIcon from "@material-ui/icons/Edit";
 
 import {IconButton, FormControlLabel} from "@material-ui/core";
-import { selectedProduct } from '../../Store/actions/selectedProductActions';
+
+// redux action to edit a product
+import { selectedRowForEdit } from '../../Store/actions/selectedProductActions';
 
 
 function MatEdit({data}) {
@@ -13,14 +15,14 @@ function MatEdit({data}) {
     const dispatch = useDispatch();
 
     const handleEditClick = () => {
-        dispatch(selectedProduct(data));
+        dispatch(selectedRowForEdit(data));
     }
 
 
     return (
         <FormControlLabel
             control={
-                <IconButton color="secondary" aria-label="add an alarm" onClick={handleEditClick} >
+                <IconButton onClick={handleEditClick} >
                     <EditIcon />
                 </IconButton>
             }

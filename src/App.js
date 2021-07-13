@@ -19,6 +19,8 @@ import { CssBaseline } from '@material-ui/core';
 // changed themes import
 import { theme, jss } from './Utils/styled-components/mainThemeChanges';
 
+import "./Assets/SASS/app.scss";
+
 
 function App() {
   return (

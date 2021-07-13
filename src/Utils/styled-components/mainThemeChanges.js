@@ -2,7 +2,6 @@ import { createMuiTheme } from "@material-ui/core";
 import { jssPreset } from "@material-ui/styles";
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import {newFont} from "./mainFontChanges";
 
 
 export const theme = createMuiTheme({
@@ -31,13 +30,6 @@ export const theme = createMuiTheme({
             main: '#B6A19E',
             dark: '#626D71',
             contrastText: '#000',
-        },
-    },
-    overrides: {
-        MuiCssBaseline: {
-            '@global': {
-                '@font-face': [newFont],
-            },
         },
     },
 });

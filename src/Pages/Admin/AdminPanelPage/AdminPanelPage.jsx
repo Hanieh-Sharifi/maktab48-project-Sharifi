@@ -4,7 +4,9 @@ import AdminPanelSideBarHeader from '../../../Containers/admin-header-sidebar/Ad
 function AdminPanelPage() {
     return (
         <div>
-            <AdminPanelSideBarHeader/>
+            <AdminPanelSideBarHeader>
+                <h1>Admin Home Page</h1>
+            </AdminPanelSideBarHeader>
         </div>
     )
 }

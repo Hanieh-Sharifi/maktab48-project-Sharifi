@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material ui components
 import { TextField, FormControl, InputLabel, Select, Input, Button } from "@material-ui/core";
@@ -15,27 +15,36 @@ import { convertBase64} from "./base64";
 import TextEditor from './TextEditor';
 
 // fetch data
-import { putData, postData } from '../../API/productApi';
+import { addProductApi, editProductApi } from '../../Store/actions/selectedProductActions';
 
 
 
 const categories = ["لبنیات","حبوبات","نوشیدنی","خوار و بار","محصولات پروتئینی"];
 
 
-function ModalContainer() {
+function ModalContainer({handleClose}) {
 
     const classes = modalContainerStyles();
-    const editRow = useSelector(state => state.todo);
 
-    const [image, setImage] = useState(editRow[0]?.image);
-    const [productName, setProductName] = useState(editRow[0]?.productName);
-    const [category, setCategory] = useState(editRow[0]?.category);
-    const [explanation, setExplanation] = useState(editRow[0]?.explanation || null);
-    console.log(typeof image);
+    // get selected row information with redux
+    const editRow = useSelector(state => state.products.editedRow);
 
-    function handleSubmit()
+    // the whole information we have to handle in this page
+    const [image, setImage] = useState(editRow.image ? editRow.image : null);
+    const [productName, setProductName] = useState(editRow.productName ? editRow.productName : null);
+    const [category, setCategory] = useState(editRow.category ? editRow.category : null );
+    const [explanation, setExplanation] = useState(editRow.explanation ? editRow.explanation : null);
+
+    const dispatch = useDispatch();
+
+    // when we submit the form in the modal, modal must close and the data must fetch, edit or add a product
+    function handleSubmit(e)
     {
-        editRow[0] ? putData(editRow[0].id, image, productName, category, explanation) : postData(image, productName, category, explanation)
+        e.preventDefault();
+        handleClose();
+
+        // if we dont have editRow.id means we are making a new component, so we can set put or post with this
+        editRow.id ? dispatch(editProductApi(editRow.id, image, productName, category, explanation)) : dispatch(addProductApi(image, productName, category, explanation)) ;
     }
 
     const handleFileRead = async (event) => {
@@ -50,9 +59,9 @@ function ModalContainer() {
 
     return (
         <div>
-            <form onSubmit={() => handleSubmit()} className={classes.root}  noValidate autoComplete="off">
+            <form onSubmit={(e) => handleSubmit(e)} className={classes.root}  noValidate autoComplete="off">
                 <InputLabel htmlFor="my-input">تصویر کالا</InputLabel>
-                <Input onChange={e => handleFileRead(e)} placeholder="image" required type="file" accept="image/*" />
+                <input accept="image/*" onChange={e => handleFileRead(e)} placeholder="image" required type="file" accept="image/*" />
                 {image && <div className={classes.imagePranet} >
                     <Button onClick={() => setImage("")} >x</Button>
                     <img src={image} alt="uploaded"/>

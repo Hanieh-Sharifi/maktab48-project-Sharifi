@@ -11,26 +11,30 @@ import ModalContainer from './ModalContainer';
 import { modalMainStyles } from './modalStyles';
 
 // redux actions
-import { deleteSelectedProduct } from '../../Store/actions/selectedProductActions';
+import { unSelectRowForEdit } from '../../Store/actions/selectedProductActions';
 
 
 
 export default function ModalComp(props)
 {
-
-    const editRow = useSelector(state => state.todo);
+    // get selected row for edit with redux
+    const editRow = useSelector(state => state.products.editedRow);
     const classes = modalMainStyles();
-    const [open, setOpen] = useState(false);
-    const dispatch = useDispatch();
 
+    // set modal situtation
+    const [open, setOpen] = useState(false);
+
+
+    const dispatch = useDispatch();
 
     // opent and close modal
     const handleOpen = () => {
         setOpen(true);
     };
 
+    // dispatching for making the selected row in redux empty
     const handleClose = () => {
-        dispatch(deleteSelectedProduct())
+        dispatch(unSelectRowForEdit())
         setOpen(false);
     };
 
@@ -43,7 +47,7 @@ export default function ModalComp(props)
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
-                open={open || ((editRow[0] && editRow[0].image)?true:false)}
+                open={open || ((editRow!=={} && editRow.image)?true:false)}
                 onClose={handleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
@@ -51,10 +55,10 @@ export default function ModalComp(props)
                     timeout: 500,
                 }}
             >
-                <Fade in={open || ((editRow[0] && editRow[0].image)? true : false)}>
+                <Fade in={open || ((editRow!=={} && editRow.image)? true : false)}>
                     <div className={classes.paper}>
                         <Button className={classes.closeButton} onClick={() => handleClose()} >X</Button>
-                        <ModalContainer/>
+                        <ModalContainer handleClose={() => handleClose()} />
                     </div>
                 </Fade>
             </Modal>

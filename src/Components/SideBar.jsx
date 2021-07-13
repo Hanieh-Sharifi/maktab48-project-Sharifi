@@ -8,8 +8,9 @@ import ReceiptIcon from '@material-ui/icons/Receipt';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import InboxIcon from '@material-ui/icons/Inbox';
+import HomeIcon from '@material-ui/icons/Home';
 
-// material ui icons
+// material ui styles
 import { useStyles } from '../Containers/admin-header-sidebar/sideBarHeaderStyle';
 
 // route imports
@@ -19,7 +20,7 @@ import { useHistory } from 'react-router-dom';
 import SideBarItems from './SideBarItem';
 
 
-const drawerItems = [{ title: "کالا ها", icon: <InboxIcon /> }, { title: "موجودی و قیمت ها", icon: <AccountBalanceWalletIcon /> }, { title: "سفارش ها", icon: <ReceiptIcon /> }]
+const drawerItems = [{title: "صفحه اصلی", icon: <HomeIcon/>}, { title: "کالا ها", icon: <InboxIcon /> }, { title: "موجودی و قیمت ها", icon: <AccountBalanceWalletIcon /> }, { title: "سفارش ها", icon: <ReceiptIcon /> }]
 
 
 function SideBar() {
