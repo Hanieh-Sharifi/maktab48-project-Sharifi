@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { DataGrid } from '@material-ui/data-grid';
 import { useStyles } from './tableStyles';
@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 // fetching data function
 import { getData } from '../../API/productApi';
 
-
 export default function ProductManagementTable() {
 
     const classes = useStyles();
@@ -20,11 +19,13 @@ export default function ProductManagementTable() {
     const dispatch = useDispatch();
 
     // get products list from redux
-    const products = useSelector(state => state.products.tableList)
+    const products = useSelector(state => state.products.tableList);
+
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
         getData()
-            .then(data => dispatch(tableData(data.data)))
+            .then(data => {dispatch(tableData(data.data));setLoading(false)})
             .catch(error => toast.error("!اطلاعات یافت نشد"))
     },[])
 
@@ -41,6 +42,7 @@ export default function ProductManagementTable() {
                 autoPageSize={true}
                 disableExtendRowFullWidth
                 className={classes.root}
+                loading={loading}
             />
             <ToastContainer/>
         </div>

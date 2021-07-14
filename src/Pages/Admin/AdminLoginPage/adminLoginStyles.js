@@ -42,10 +42,11 @@ export const useStyles = makeStyles((theme) => ({
             marginBottom: "15px",
         },
         '&>button': {
-            marginTop: "60px",
+            marginTop: "40px",
             marginBottom: "20px",
+            justifyContent: "space-around",
         },
-        '&>h1': {
+        '&>h2': {
             marginBottom: "40px",
             textAlign: "center",
         },
