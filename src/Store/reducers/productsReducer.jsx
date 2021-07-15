@@ -1,4 +1,4 @@
-import { SET_EDIT_ROW, PRODUCTS_LIST, DELETE_ROW, EDIT_PRODUCT, ADD_PRODUCT} from "../types/actionTypes";
+import { SET_EDIT_ROW, PRODUCTS_LIST, DELETE_ROW, EDIT_PRODUCT, ADD_PRODUCT} from "../types/productsActionTypes";
 
 const initialState = { tableList: [], editedRow:{}};
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 // material ui components
 import { Container, Grid, Typography } from '@material-ui/core';
@@ -9,17 +9,21 @@ import {useStyles} from "./adminProductsStyles";
 
 // components
 import ProductManagementTable from "../../../Containers/product-management-table/ProductManagementTable";
-import ModalComp from '../../../Containers/modal/ModalComp';
+import ModalComp from '../../../Containers/product-mangement-modal/ModalComp';
+
+
+import { unSelectRowForEdit} from "../../../Store/actions/productsActions";
 
 
 function AdminManageProducts() {
 
     const classes = useStyles();
 
+
     return (
         <Container maxWidth="lg" align="center">
             <Grid container justify="center">
-                <Grid container item md={5} xs={12} className={classes.textParent}>
+                <Grid container item md={5} xs={12} className={classes.textParent} align="center">
                     <Typography variant="h4" component="h4" >
                         مدیریت کالاها
                     </Typography>

@@ -11,7 +11,7 @@ import ModalContainer from './ModalContainer';
 import { modalMainStyles } from './modalStyles';
 
 // redux actions
-import { unSelectRowForEdit } from '../../Store/actions/selectedProductActions';
+import { unSelectRowForEdit } from '../../Store/actions/productsActions';
 
 
 

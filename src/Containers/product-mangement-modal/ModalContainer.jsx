@@ -15,7 +15,7 @@ import { convertBase64} from "./base64";
 import TextEditor from './TextEditor';
 
 // fetch data
-import { addProductApi, editProductApi } from '../../Store/actions/selectedProductActions';
+import { addProductApi, editProductApi } from '../../Store/actions/productsActions';
 
 
 
@@ -67,7 +67,7 @@ function ModalContainer({handleClose}) {
                     <img src={image} alt="uploaded"/>
                 </div>}
                 {image==="" && <p className={classes.error} >لطفا فیلد را پر کنید</p>}
-                <TextField required value={productName} onChange={(e) => setProductName(e.target.value)} fullWidth id="outlined-basic" label="نام کالا" variant="outlined" />
+                <TextField required value={productName} onChange={(e) => setProductName(e.target.value)} fullWidth label="نام کالا" variant="outlined" />
                 {productName==="" && <p className={classes.error} >لطفا فیلد را پر کنید</p>}
                 <FormControl fullWidth variant="filled" className={classes.formControl}>
                     <InputLabel htmlFor="filled-age-native-simple">دسته بندی</InputLabel>

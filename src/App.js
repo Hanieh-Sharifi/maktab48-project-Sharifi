@@ -9,7 +9,7 @@ import NotFound from './Pages/NotFound';
 import AdminPanelPage from './Pages/Admin/AdminPanelPage/AdminPanelPage';
 import ProtectedRoute from './Pages/ProtectedRoute';
 import AdminPanelSideBarHeader from './Containers/admin-header-sidebar/AdminPanelSideBarHeader';
-import AdminManageProducts from './Pages/Admin/adminManageProducts/AdminManageProducts';
+import AdminManageProducts from './Pages/Admin/AdminManageProductsPage/AdminManageProducts';
 import Home from './Pages/Home';
 
 // material ui and styles import
@@ -20,6 +20,8 @@ import { CssBaseline } from '@material-ui/core';
 import { theme, jss } from './Utils/styled-components/mainThemeChanges';
 
 import "./Assets/SASS/app.scss";
+import AdminManageOrders from './Pages/Admin/AdminManageOrdersPage/AdminManageOrders';
+import MainProduct from './Pages/Products/MainProduct';
 
 
 function App() {
@@ -33,6 +35,9 @@ function App() {
               {/* // home */}
               <Route exact path="/">
                 <Home/>
+              </Route>
+              <Route exact path="/product/:id" >
+                <MainProduct/>
               </Route>
               {/* // admin login */}
               <Route exact path="/admin/login">
@@ -56,6 +61,7 @@ function App() {
               {/* // admin orders management  */}
               <ProtectedRoute exact redirectPath="/admin/login" path="/admin/manage/orders">
                 <AdminPanelSideBarHeader>
+                  <AdminManageOrders/>
                 </AdminPanelSideBarHeader>
               </ProtectedRoute>
               {/* // none existent pages  */}

@@ -7,7 +7,7 @@ import {FormControlLabel, IconButton} from "@material-ui/core";
 import { useDispatch } from 'react-redux';
 
 // redux action, to delete a product
-import { deleteItemApi } from '../../Store/actions/selectedProductActions';
+import { deleteItemApi } from '../../Store/actions/productsActions';
 
 
 function MaDelete({ index }){

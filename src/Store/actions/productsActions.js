@@ -1,5 +1,5 @@
 import { deleteData, postData, putData } from "../../API/productApi";
-import { SET_EDIT_ROW, PRODUCTS_LIST, DELETE_ROW, EDIT_PRODUCT, ADD_PRODUCT} from "../types/actionTypes";
+import { SET_EDIT_ROW, PRODUCTS_LIST, DELETE_ROW, EDIT_PRODUCT, ADD_PRODUCT} from "../types/productsActionTypes";
 
 export const selectedRowForEdit = (data) => {
     return { type: SET_EDIT_ROW, payload: data }

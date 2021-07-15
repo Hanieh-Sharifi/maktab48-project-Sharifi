@@ -26,5 +26,8 @@ export const useStyles = makeStyles({
         '& img':{
             height:"50px",
         },
+        '& .MuiDataGrid-cell:focus-within, .MuiDataGrid-columnHeader:focus-within': {
+            outline: "0",
+        },
     }
 })
