@@ -11,6 +11,7 @@ import ProtectedRoute from './Pages/ProtectedRoute';
 import AdminPanelSideBarHeader from './Containers/admin-header-sidebar/AdminPanelSideBarHeader';
 import AdminManageProducts from './Pages/Admin/AdminManageProductsPage/AdminManageProducts';
 import Home from './Pages/Home';
+import ManagePrices from "./Pages/Admin/ManagePrices/ManagePrices";
 
 // material ui and styles import
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
@@ -56,6 +57,7 @@ function App() {
               {/* // admin price management  */}
               <ProtectedRoute exact redirectPath="/admin/login" path="/admin/manage/prices">
                 <AdminPanelSideBarHeader>
+                  <ManagePrices/>
                 </AdminPanelSideBarHeader>
               </ProtectedRoute>
               {/* // admin orders management  */}

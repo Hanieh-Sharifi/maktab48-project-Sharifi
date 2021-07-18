@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 // material ui components
 import { Container, Grid, Typography } from '@material-ui/core';
@@ -10,10 +10,6 @@ import {useStyles} from "./adminProductsStyles";
 // components
 import ProductManagementTable from "../../../Containers/product-management-table/ProductManagementTable";
 import ModalComp from '../../../Containers/product-mangement-modal/ModalComp';
-
-
-import { unSelectRowForEdit} from "../../../Store/actions/productsActions";
-
 
 function AdminManageProducts() {
 

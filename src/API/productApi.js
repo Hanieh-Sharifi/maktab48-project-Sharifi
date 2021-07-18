@@ -2,12 +2,14 @@ import axios from "axios";
 
 
 // update a product
-export const putData = (id, image, productName, category, explanation) => {
+export const putData = (id, image, productName, category, explanation, price, inventory) => {
     return (axios.put(`http://localhost:5000/products/${id}`, {
         image: image,
         productName: productName,
         category: category,
-        explanation: explanation
+        explanation: explanation,
+        price: price,
+        inventory: inventory
     }))
 }
 
@@ -17,7 +19,9 @@ export const postData = (image, productName, category, explanation ) => {
         image: image,
         productName: productName,
         category: category,
-        explanation: explanation
+        explanation: explanation,
+        price:10000,
+        inventory:10
     }))
 }
 

@@ -23,13 +23,13 @@ export const deleteItemApi = (index) => (dispatch) => {
         .catch(error => console.error(error))
 }
 
-export const editProduct = (id, image, productName, category, explanation) => {
-    return { type: EDIT_PRODUCT, payload: { id, image, productName, category, explanation}}
+export const editProduct = (id, image, productName, category, explanation, price, inventory) => {
+    return { type: EDIT_PRODUCT, payload: { id, image, productName, category, explanation, price, inventory}}
 }
 
-export const editProductApi = (id, image, productName, category, explanation) => (dispatch) => {
-    putData(id, image, productName, category, explanation)
-        .then(response => dispatch(editProduct(id, image, productName, category, explanation)))
+export const editProductApi = (id, image, productName, category, explanation, price, inventory) => (dispatch) => {
+    putData(id, image, productName, category, explanation, price, inventory)
+        .then(response => dispatch(editProduct(id, image, productName, category, explanation, price, inventory)))
         .catch(error => console.error(error))
 }
 
@@ -39,6 +39,6 @@ export const addNewProduct = (id,image, productName, category, explanation) => {
 
 export const addProductApi = (image, productName, category, explanation) => (dispatch) => {
     postData(image, productName, category, explanation)
-        .then(res => { dispatch(addNewProduct(res.data.id,image, productName, category, explanation))})
+        .then(res => { console.log(res.data);dispatch(addNewProduct(res.data.id,image, productName, category, explanation))})
         .catch(error => console.error(error))
 }

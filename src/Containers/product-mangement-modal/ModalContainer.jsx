@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // material ui components
-import { TextField, FormControl, InputLabel, Select, Input, Button } from "@material-ui/core";
+import { TextField, FormControl, InputLabel, Select, Button } from "@material-ui/core";
 import { SunShineButton } from '../../Utils/styled-components/newColorsMaterial/coloredButton/coloredButtonComponent';
 
 // material ui styles
@@ -44,7 +44,7 @@ function ModalContainer({handleClose}) {
         handleClose();
 
         // if we dont have editRow.id means we are making a new component, so we can set put or post with this
-        editRow.id ? dispatch(editProductApi(editRow.id, image, productName, category, explanation)) : dispatch(addProductApi(image, productName, category, explanation)) ;
+        editRow.id ? dispatch(editProductApi(editRow.id, image, productName, category, explanation, editRow.price, editRow.inventory)) : dispatch(addProductApi(image, productName, category, explanation));
     }
 
     const handleFileRead = async (event) => {
@@ -61,7 +61,7 @@ function ModalContainer({handleClose}) {
         <div>
             <form onSubmit={(e) => handleSubmit(e)} className={classes.root}  noValidate autoComplete="off">
                 <InputLabel htmlFor="my-input">تصویر کالا</InputLabel>
-                <input accept="image/*" onChange={e => handleFileRead(e)} placeholder="image" required type="file" accept="image/*" />
+                <input onChange={e => handleFileRead(e)} placeholder="image" required type="file" accept="image/*" />
                 {image && <div className={classes.imagePranet} >
                     <Button onClick={() => setImage("")} >x</Button>
                     <img src={image} alt="uploaded"/>

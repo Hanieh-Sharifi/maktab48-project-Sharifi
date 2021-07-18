@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 
 // material ui components
 import { TextField } from "@material-ui/core";
@@ -33,7 +33,7 @@ function ModalContainer({data}) {
             <form onSubmit={(e) => handleSubmit(e)} className={classes.root} noValidate autoComplete="off">
                 <TextField label={"نام مشتری"} value={data.customerName} readOnly fullWidth variant="outlined"/>
                 <TextField label={"آدرس"} value={data.customerAddress} multiline={true} readOnly fullWidth variant="outlined" />
-                <TextField label={"تلفن"} value={data.telephone} readOnly fullWidth label="نام کالا" variant="outlined" />
+                <TextField label={"تلفن"} value={data.telephone} readOnly fullWidth variant="outlined" />
                 <TextField label={"زمان تحویل"} value={data.arriveTime} readOnly fullWidth variant="outlined" />
                 <TextField label={"زمان سفارش"} value={data.orderTime} readOnly fullWidth variant="outlined" />
                 <OrderTable data={data.orderList} />

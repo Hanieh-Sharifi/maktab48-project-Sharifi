@@ -21,13 +21,13 @@ export default function ProductManagementTable({checked}) {
 
     const Allorders = useSelector(state => state.orders.ordersList)
 
-    const selectedOrders = checked ? Allorders.filter((item) => item.status==="notDone") : Allorders.filter((item) => item.status==="done")
+    const selectedOrders = checked ? Allorders?.filter((item) => item.status === "notDone") : Allorders?.filter((item) => item.status==="done")
 
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getOrders()
-            .then(data => { dispatch(ordersList(data.data)); setLoading(false) })
+            .then(data => {dispatch(ordersList(data.data));setLoading(false) })
             .catch(error => toast.error("!اطلاعات یافت نشد"))
     }, [])
 
