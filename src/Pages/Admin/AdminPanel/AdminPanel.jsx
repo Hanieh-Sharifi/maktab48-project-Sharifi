@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminPanelSideBarHeader from '../../../Containers/admin-header-sidebar/AdminPanelSideBarHeader';
 
-function AdminPanelPage() {
+function AdminPanel() {
     return (
         <div>
             <AdminPanelSideBarHeader>
@@ -11,4 +11,4 @@ function AdminPanelPage() {
     )
 }
 
-export default AdminPanelPage;
+export default AdminPanel;

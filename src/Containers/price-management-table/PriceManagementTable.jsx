@@ -21,6 +21,14 @@ function PriceManagementTable({ handleDataFromTable }) {
     // get products list from redux
     const products = useSelector(state => state.products.tableList);
 
+    const editedProducts = products.map((item) => {
+        let price = +item.price
+        let inventory = +item.inventory
+        let editedPrice = price.toLocaleString('ar-EG')
+        let editedInventory = inventory.toLocaleString('ar-EG')
+        return ({...item, price: editedPrice, inventory: editedInventory})
+    })
+
     const [loading, setLoading] = useState(true);
     const [changedRows, setChangedRows] = useState([]);
 
@@ -49,7 +57,7 @@ function PriceManagementTable({ handleDataFromTable }) {
     return (
         <div className={classes.tableParent}>
             <DataGrid
-                rows={products}
+                rows={editedProducts}
                 columns={columns}
                 pageSize={5}
                 disableSelectionOnClick

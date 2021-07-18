@@ -8,7 +8,7 @@ import { LavenderTextField } from '../../../Utils/styled-components/newColorsMat
 import { Link, useHistory } from 'react-router-dom';
 
 // components style import
-import {useStyles} from "./adminLoginStyles";
+import {useStyles} from "./AdminLoginStyles";
 
 // fetch user and get token function
 import { LoginFetch } from '../../../API/login';
@@ -27,7 +27,7 @@ const override = css`
   border-color: black;
 `;
 
-const AdminLoginPage = () => {
+const AdminLogin = () => {
 
     // access to url
     const history = useHistory();
@@ -78,7 +78,7 @@ const AdminLoginPage = () => {
     )
 }
 
-export default AdminLoginPage;
+export default AdminLogin;
 
 // accepted admin username and password:
 //eve.holt@reqres.in : username

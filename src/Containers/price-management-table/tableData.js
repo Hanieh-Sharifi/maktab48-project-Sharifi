@@ -4,7 +4,7 @@ export const columns = [
         field: "productName",
         headerName: 'نام کالا',
         sortable: false,
-        flex: 1,
+        flex: .75,
         filterable: false,
         width: 200,
     },

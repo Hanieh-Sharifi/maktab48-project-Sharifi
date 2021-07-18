@@ -4,14 +4,15 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 // pages imports
-import AdminLoginPage from './Pages/Admin/AdminLoginPage/AdminLoginPage';
+import AdminLogin from './Pages/Admin/AdminLogin/AdminLogin';
 import NotFound from './Pages/NotFound';
-import AdminPanelPage from './Pages/Admin/AdminPanelPage/AdminPanelPage';
+import AdminPanel from './Pages/Admin/AdminPanel/AdminPanel';
 import ProtectedRoute from './Pages/ProtectedRoute';
 import AdminPanelSideBarHeader from './Containers/admin-header-sidebar/AdminPanelSideBarHeader';
-import AdminManageProducts from './Pages/Admin/AdminManageProductsPage/AdminManageProducts';
+import AdminManageProducts from './Pages/Admin/AdminManageProducts/AdminManageProducts';
 import Home from './Pages/Home';
 import ManagePrices from "./Pages/Admin/ManagePrices/ManagePrices";
+import AdminManageOrders from './Pages/Admin/AdminManageOrders/AdminManageOrders';
 
 // material ui and styles import
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
@@ -21,7 +22,6 @@ import { CssBaseline } from '@material-ui/core';
 import { theme, jss } from './Utils/styled-components/mainThemeChanges';
 
 import "./Assets/SASS/app.scss";
-import AdminManageOrders from './Pages/Admin/AdminManageOrdersPage/AdminManageOrders';
 import MainProduct from './Pages/Products/MainProduct';
 
 
@@ -42,11 +42,11 @@ function App() {
               </Route>
               {/* // admin login */}
               <Route exact path="/admin/login">
-                <AdminLoginPage/>
+                <AdminLogin/>
               </Route>
               {/* // admin panel main page  */}
               <ProtectedRoute exact redirectPath="/admin/login" path="/admin/panel">
-                <AdminPanelPage/>
+                <AdminPanel/>
               </ProtectedRoute>
               {/* // admin products management  */}
               <ProtectedRoute exact redirectPath="/admin/login" path="/admin/manage/products">

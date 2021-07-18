@@ -20,8 +20,8 @@ export const postData = (image, productName, category, explanation ) => {
         productName: productName,
         category: category,
         explanation: explanation,
-        price:10000,
-        inventory:10
+        price:0,
+        inventory:0
     }))
 }
 
