@@ -5,8 +5,8 @@
       "customerName": "هانیه شریفی",
       "customerAddress": "ایران-تهران-صادقیه-ستارخان و یک ادرس طولانی برای تست اینپوت",
       "telephone": "09197042514",
-      "arriveTime": "1399/5/30",
-      "orderTime": "1399/5/25",
+      "arriveTime": "۱۳۹۹/۵/۳۰",
+      "orderTime": "۱۳۹۹/۵/۲۵",
       "orderList": [
         {
           "id": 1,
@@ -34,8 +34,8 @@
       "customerName": "سپهر گلپذیر",
       "customerAddress": "ایران-تهران-کردستان-یجایی",
       "telephone": "09190070707",
-      "arriveTime": "1399/5/9",
-      "orderTime": "1399/5/19",
+      "arriveTime": "۱۳۹۹/۵/۹",
+      "orderTime": "۱۳۹۹/۵/۱۹",
       "orderList": [
         {
           "name": "کالا 1",
@@ -62,8 +62,8 @@
       "customerName": "نیکی قاضی",
       "customerAddress": "ایران-تهران-ستارخان-بهبودی",
       "telephone": "09109090909",
-      "arriveTime": "1399/3/17",
-      "orderTime": "1399/3/8",
+      "arriveTime": "۱۳۹۹/۳/۱۷",
+      "orderTime": "۱۳۹۹/۳/۸",
       "orderList": [
         {
           "name": "کالا 1",
@@ -88,8 +88,8 @@
       "customerName": "تبسم انتظامی",
       "customerAddress": "ایران-تهران-ستارخان-یجایی",
       "telephone": "09101010101",
-      "arriveTime": "1399/8/21",
-      "orderTime": "1399/8/13",
+      "arriveTime": "۱۳۹۹/۸/۲۱",
+      "orderTime": "۱۳۹۹/۸/۱۳",
       "orderList": [
         {
           "name": "کالا 1",
