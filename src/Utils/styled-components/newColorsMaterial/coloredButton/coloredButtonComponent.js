@@ -39,7 +39,10 @@ export const LavenderButton = withStyles((theme) => ({
         },
         '& .MuiInputBase-root': {
             color: theme.palette.lavender.contrastText
-        }
+        },
+        '&.Mui-disabled': {
+            color: "lightGray",
+        },
     }
 }))(Button);
 

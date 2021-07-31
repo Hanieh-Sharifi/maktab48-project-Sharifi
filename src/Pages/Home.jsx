@@ -1,11 +1,14 @@
 import React from 'react'
+import MainPageHeader from '../Components/MainPageHeader'
+import HomeBody from '../Containers/home-body/HomeBody'
 
 function Home() {
     return (
-        <div>
-            <h1>THIS IS HOME</h1>
-        </div>
+        <>
+            <MainPageHeader/>
+            <HomeBody/>
+        </>
     )
-}
+};
 
 export default Home;

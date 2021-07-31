@@ -50,6 +50,7 @@ const AdminLogin = () => {
     // form submitted
     function formSubmitted(e)
     {
+        console.log(userName, password)
         setLoading(true)
         e.preventDefault();
         // fetch user and get token and go to panel page
@@ -63,11 +64,12 @@ const AdminLogin = () => {
             <div className={classes.formParent}>
                 <form onSubmit={(e) => formSubmitted(e)} className={classes.root} noValidate autoComplete="off">
                     <h2>ورود به پنل مدیریت فروشگاه دولوپر</h2>
-                    <LavenderTextField value={userName} onChange={(e) => stateChanges(e)} label="نام کاربری" variant="outlined" />
+                    <LavenderTextField value={userName} id="userName-input" onChange={(e) => stateChanges(e)} label="نام کاربری" variant="outlined" />
                     {userName === "" && <p className={classes.error}>لطفا فیلد را پر کنید</p>}
-                    <LavenderTextField value={password} onChange={(e) => stateChanges(e)} type="password" label="رمز عبور" variant="outlined" />
+                    <LavenderTextField value={password} id="password-input" onChange={(e) => stateChanges(e)} type="password" label="رمز عبور" variant="outlined" />
                     {password === "" && <p className={classes.error}>لطفا فیلد را پر کنید</p>}
-                    <SunShineButton disabled={((userName === "" || password === "") || (userName === null || password === null)) ? true : false} type="submit" > ورود
+                    <SunShineButton disabled={((userName === "" || password === "") || (userName === null || password === null)) ? false : false} type="submit" > ورود
+                    {/* <SunShineButton type="submit" > ورود */}
                         <ClipLoader loading={loading} css={override} size={30}/>
                     </SunShineButton>
                 </form>

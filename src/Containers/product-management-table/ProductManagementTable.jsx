@@ -20,6 +20,7 @@ export default function ProductManagementTable() {
 
     // get products list from redux
     const products = useSelector(state => state.products.tableList);
+    let editedOrder = products;
 
     const [loading, setLoading] = useState(true);
 
@@ -43,6 +44,7 @@ export default function ProductManagementTable() {
                 disableExtendRowFullWidth
                 className={classes.root}
                 loading={loading}
+                sortingOrder={['desc', 'asc', null]}
             />
             <ToastContainer/>
         </div>

@@ -10,5 +10,10 @@ export const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             justifyContent: "center",
         },
+        '& .Mui-disabled':{
+            color: "white",
+            backgroundColor: "#6C648B",
+            opacity: ".9",
+        },
     },
 }));
