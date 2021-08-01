@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -10,13 +9,21 @@ import { SunShineAppBar } from '../Utils/styled-components/newColorsMaterial/col
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useHistory } from 'react-router-dom';
 
-import logo from "../Assets/img/logo.jpg"
-import { Container } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
+import logo from "../Assets/img/logo.jpg"
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        "& a":{
+            textDecoration:"none",
+            color:"white"
+        },
+        "& a>button":{
+            color:"white"
+        }
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -44,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function MainPageHeader() {
+export default function MainPageHeader({classnames}) {
     const classes = useStyles();
 
     const history = useHistory();
@@ -53,19 +60,28 @@ export default function MainPageHeader() {
         history.push("/admin/login");
     }
 
+    const list = useSelector(state => state.products.shoppingList)
+
+    const listLength = list.length;
+
+
     return (
         <div className={classes.root}>
-            <SunShineAppBar position="static">
+            <SunShineAppBar position={classnames ? "fixed" : "static"} className={classnames} >
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton>
                     <img className={classes.logo} src={logo} alt="logo" />
                     <Typography variant="h6" className={classes.title}>
-                        فروشگاه دولوپر
+                        <Link to="/" >
+                            فروشگاه دولوپر
+                        </Link>
                     </Typography>
                     <Button color="inherit" onClick={()=>handleManagementPage()} >پنل مدیریت</Button>
-                    <Button color="inherit"><ShoppingCartIcon />سبد خرید</Button>
+                    <Link to="/shopping/list" >
+                        <Button color="inherit"><ShoppingCartIcon />سبد خرید<p style={{backgroundColor:"rgba(0,0,0,.7)",position:"absolute",right:"0",bottom:"0",height:"25px",width:"25px",border:"1px solid black",borderRadius:"50%"}} >{listLength}</p></Button>
+                    </Link>
                 </Toolbar>
             </SunShineAppBar>
         </div>

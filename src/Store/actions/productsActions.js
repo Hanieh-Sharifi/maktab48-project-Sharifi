@@ -1,5 +1,5 @@
 import { deleteData, postData, putData } from "../../API/productApi";
-import { SET_EDIT_ROW, PRODUCTS_LIST, DELETE_ROW, EDIT_PRODUCT, ADD_PRODUCT} from "../types/productsActionTypes";
+import { SET_EDIT_ROW, PRODUCTS_LIST, DELETE_ROW, EDIT_PRODUCT, ADD_PRODUCT, SHOPPING_LIST, CLEAR_SHOPPING_LIST, DELETE_FROM_SHOPPPING_LIST} from "../types/productsActionTypes";
 
 export const selectedRowForEdit = (data) => {
     return { type: SET_EDIT_ROW, payload: data }
@@ -15,6 +15,18 @@ export const tableData = (data) => {
 
 export const deleteProduct = (index) => {
     return { type: DELETE_ROW, payload: index};
+}
+
+export const addToShoppingList = (item) => {
+    return { type: SHOPPING_LIST, payload: item}
+}
+
+export const clearShopppingList = () => {
+    return {type: CLEAR_SHOPPING_LIST, payload:{}}
+}
+
+export const deleteItemFromShoppingList = (id) => {
+    return {type: DELETE_FROM_SHOPPPING_LIST, payload:id}
 }
 
 export const deleteItemApi = (index) => (dispatch) => {

@@ -6,6 +6,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useEffect } from 'react';
 import { LavenderButton} from "../../Utils/styled-components/newColorsMaterial/coloredButton/coloredButtonComponent";
 import { toast, ToastContainer } from 'react-toastify';
+import { addToShoppingList } from '../../Store/actions/productsActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     image:{
@@ -36,14 +38,18 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductDetail({product}) {
 
+    const dispatch = useDispatch();
+
     const classes = useStyles();
 
     const [numbers, setNumbers] = useState(1);
+    
+    const reduxList = useSelector(state => state.products.shoppingList)
 
     const shoppingHandler = () =>{
-        let shopping = localStorage.getItem("shoppingList");
-        console.log(shopping);
-        localStorage.setItem("shoppingList", { ...shopping, id:product.id, numbers:numbers});
+        const list = [...reduxList,{id: product.id, numbers: numbers, name: product.productName, price:product.price}]
+        localStorage.setItem("shoppingList", JSON.stringify(list));
+        dispatch(addToShoppingList({ id: product.id, numbers: numbers, name: product.productName, price: product.price }))
         toast.success("کالا به سبد خرید اضافه شد")
     }
 

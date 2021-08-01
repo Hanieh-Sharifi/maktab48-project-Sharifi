@@ -23,6 +23,9 @@ import { theme, jss } from './Utils/styled-components/mainThemeChanges';
 
 import "./Assets/SASS/app.scss";
 import MainProduct from './Pages/Products/MainProduct';
+import CategoryProducts from './Pages/CategoryProducts';
+import ShoppingList from './Pages/Users/shoppingList/ShoppingList';
+import LastPage from './Pages/Users/lastPage/LastPage';
 
 
 function App() {
@@ -37,6 +40,18 @@ function App() {
               <Route exact path="/">
                 <Home/>
               </Route>
+              {/* // category products  */}
+              <Route exact path="/products/:category" >
+                <CategoryProducts/>
+              </Route>
+              {/* // shopping list */}
+              <Route exact path="/shopping/list">
+                <ShoppingList/>
+              </Route>
+              <Route exact path="/user/information">
+                <LastPage/>
+              </Route>
+              {/* // product details page */}
               <Route exact path="/product/:id" >
                 <MainProduct/>
               </Route>

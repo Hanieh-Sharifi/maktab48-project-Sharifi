@@ -11,11 +11,15 @@ const useStyles = makeStyles({
         flexDirection:"column",
         alignItems:"center",
         marginTop:"30px",
+        "& a": {
+            textDecoration: "none",
+            color:"black",
+        }
     },
     cardParent:{
         display:"flex",
         alignItems:"center",
-        justifyContent:"space-around",
+        justifyContent:"space-between",
         width:"90%",
         flexWrap:"wrap",
         marginTop:"10px",
@@ -53,17 +57,21 @@ function HomeBody() {
     return (
         <div className={classes.parent}>
             <Container className={classes.children} maxWidth="lg">
-                <Typography variant="h5" component="h5">
-                    لبنیات
-                </Typography>
+                <Link to="/products/dairy" >
+                    <Typography variant="h5" component="h5">
+                        لبنیات
+                    </Typography>
+                </Link>
                 <div className={classes.cardParent}>
                     {products?.map((item) => { return item.category === "لبنیات" && <Link to={`/product/${item.id}`}><ProductsCard name={item.productName} price={item.price} image={item.image} /></Link>})}
                 </div>
             </Container>
             <Container className={classes.children} maxWidth="lg">
-                <Typography variant="h5" component="h5">
-                    نوشیدنی
-                </Typography>
+                <Link to="products/drink" >
+                    <Typography variant="h5" component="h5">
+                        نوشیدنی
+                    </Typography>
+                </Link>
                 <div className={classes.cardParent}>
                     {products?.map((item) => { return item.category === "نوشیدنی" && <Link to={`/product/${item.id}`}><ProductsCard name={item.productName} price={item.price} image={item.image} /></Link> })}
                 </div>

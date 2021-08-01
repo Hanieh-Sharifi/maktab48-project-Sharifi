@@ -1,6 +1,6 @@
-import { SET_EDIT_ROW, PRODUCTS_LIST, DELETE_ROW, EDIT_PRODUCT, ADD_PRODUCT} from "../types/productsActionTypes";
+import { SET_EDIT_ROW, PRODUCTS_LIST, DELETE_ROW, EDIT_PRODUCT, ADD_PRODUCT, SHOPPING_LIST, CLEAR_SHOPPING_LIST, DELETE_FROM_SHOPPPING_LIST} from "../types/productsActionTypes";
 
-const initialState = { tableList: [], editedRow:{}};
+const initialState = { tableList: [], editedRow:{}, shoppingList:[...JSON.parse(localStorage.getItem("shoppingList") || "[]")]};
 
 function productsReducer(state = initialState, action)
 {
@@ -19,6 +19,15 @@ function productsReducer(state = initialState, action)
         }
         case ADD_PRODUCT: {
             return {...state, tableList: [...state.tableList, action.payload]}
+        }
+        case SHOPPING_LIST: {
+            return {...state, shoppingList: [...state.shoppingList, action.payload]}
+        }
+        case CLEAR_SHOPPING_LIST: {
+            return {...state, shoppingList: []}
+        }
+        case DELETE_FROM_SHOPPPING_LIST: {
+            return {...state, shoppingList: state.shoppingList.filter((item) => item.id!==action.payload)}
         }
         default:
             return state;
